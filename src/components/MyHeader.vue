@@ -28,7 +28,7 @@
         </div>
     </nav>
 
-</template>
+</template> 
 
 <style scoped lang="scss">
 
