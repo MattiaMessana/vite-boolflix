@@ -23,6 +23,8 @@
         const paramsObj = {
         api_key: "4de0eca76da6b34f96ce4baecfb99307",
         query: this.store.query,
+        flags: ["en" , "it" , "es" , "de" , "ja", "fr"],
+        
       }
       axios
         .get("https://api.themoviedb.org/3/search/movie", {
@@ -31,6 +33,7 @@
         .then((resp) => {
           console.log(resp.data.results);
           this.store.movieList = resp.data.results;
+          this.store.tvList = resp.data.results;
         })
       }
     }
@@ -42,6 +45,8 @@
 
   <MyHeader @search="getCards"/>
   <MyCardsList :cardsArray="store.movieList" />
+  <MyCardsList :cardsArray="store.tvList" />
+
 
 </template>
 

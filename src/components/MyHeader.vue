@@ -8,9 +8,7 @@
             };
         },
         methods: {
-            showResults() {
-                console.log("ciao");
-            }
+            
         }
     }
 
@@ -23,8 +21,9 @@
             <a class="navbar-brand link-danger fs-3 ">BOOFLIX</a>
 
             <form class="d-flex" role="search">
-                <input @input="$emit('search')" v-model="store.query" class="form-control-sm me-2 rounded-4 border-0" type="search" placeholder="Search" aria-label="Search">
-                <button @click="showResults"  class="btn btn-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input  @keyup.enter="$emit('search')" v-model="store.query" class="form-control-sm me-2 rounded-4 border-0" type="search" placeholder="Search" aria-label="Search">
+                <button @click.prevent="$emit('search')"  class="btn btn-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <!-- il form riavvia la pagina quindi per evitare che si riavvii utilizziamo .prevent  -->
             </form>
         </div>
     </nav>
