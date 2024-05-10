@@ -5,7 +5,7 @@ export default {
     },
     data() {
         return {
-            flags: ["en" , "it" , "es" , "de" , "ja", "fr"],
+            flags: ["en" , "it" , "es" , "de" , "ja", "fr", "pt"],
         };
     },
     methods: {
@@ -13,14 +13,16 @@ export default {
             return new URL(`../assets/img/${imageName}.png`, import.meta.url).href;
         },
         hasFlags() {
-            console.log("ciao");
             if (this.flags.includes(this.cardObj.original_language) ) {
                 return true;
             } else {
                 return false;
             }
+        },
+        changeVote() {
+            const vote = Math.round((this.cardObj.vote_average) / 2);
+            return vote
         }
-
     }
 }
 </script>
@@ -28,18 +30,21 @@ export default {
 <template>
     
     <!-- creiamo singola carta  -->
-    <div class="card mt-4 p-3 border-0">
+    <div class="card mt-4 p-3 border-0 text-bg-dark">
 
-        <img :src=" `https://image.tmdb.org/t/p/w342/` + `${cardObj.poster_path}`"  class="card-img-top" :alt="cardObj.original_title">
+        <img :src=" `https://image.tmdb.org/t/p/w185/` + `${cardObj.poster_path}`"  class="card-img-top" :alt="cardObj.original_title">
 
         <div class="card-body">
-            <h5 class="card-title mb-4"> {{cardObj.title}}</h5>
-            <p class="card-subtitle"> {{cardObj.original_title}} </p>
+            <h5 class="card-title mb-4"> {{cardObj.title}} {{cardObj.name}}</h5>
+            <p class="card-subtitle"> {{cardObj.original_title}} {{cardObj.original_name}} </p>
 
             <img v-if="hasFlags()" class=" mb-2 mt-2" :src="getImagePath(cardObj.original_language)" alt="">
             <p v-else class="card-subtitle"> {{cardObj.original_language}} </p>
 
-            <p class="card-subtitle"> {{cardObj.vote_average}} </p>
+            <p class="card-subtitile">
+                <i class="fa-solid fa-star" v-for="x in changeVote()"></i>
+                <i class="fa-regular fa-star" v-for="x in (5 - changeVote())"></i>
+            </p>
         </div>
 
     </div>
@@ -47,11 +52,15 @@ export default {
 </template>
 
 <style scoped lang="scss">
-
-    card-body {
+    .card-body {
+        display: none;
         img {
             width: 30px;
+            
         }
     }
-
+    
+    .card:hover .card-body {
+        display: block;
+    }
 </style>
