@@ -25,7 +25,7 @@
 
     <nav class="navbar bg-dark mb-3">
         <div class="container-fluid">
-            <a  class="navbar-brand link-danger fs-3 ">BOOFLIX</a>
+            <a href="" class="navbar-brand link-danger fs-3 ">BOOFLIX</a>
 
             <div class="d-flex">
 
