@@ -32,7 +32,9 @@ export default {
     <!-- creiamo singola carta  -->
     <div class="card mt-4 p-3 border-0 text-bg-dark">
 
-        <img :src=" `https://image.tmdb.org/t/p/w185/` + `${cardObj.poster_path}`"  class="card-img-top" :alt="cardObj.original_title">
+        <img v-if="!!cardObj.poster_path" :src=" `https://image.tmdb.org/t/p/w185/` + `${cardObj.poster_path}`"  class="card-img-top" :alt="cardObj.original_title">
+
+        <img v-else src="https://www.altavod.com/assets/images/poster-placeholder.png" alt="">
 
         <div class="card-body">
             <h5 class="card-title mb-4"> {{cardObj.title}} {{cardObj.name}}</h5>
